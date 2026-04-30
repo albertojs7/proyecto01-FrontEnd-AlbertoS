@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 // SVG inline de una pokébola como logo
 function PokeballIcon() {
@@ -12,24 +12,38 @@ function PokeballIcon() {
       aria-hidden="true"
       focusable="false"
     >
-      <circle cx="50" cy="50" r="48" fill="white" stroke="#333" strokeWidth="4" />
+      <circle
+        cx="50"
+        cy="50"
+        r="48"
+        fill="white"
+        stroke="#333"
+        strokeWidth="4"
+      />
       <path d="M2 50 Q2 2 50 2 Q98 2 98 50Z" fill="#e53e3e" />
       <rect x="2" y="46" width="96" height="8" fill="#333" />
-      <circle cx="50" cy="50" r="12" fill="white" stroke="#333" strokeWidth="4" />
+      <circle
+        cx="50"
+        cy="50"
+        r="12"
+        fill="white"
+        stroke="#333"
+        strokeWidth="4"
+      />
       <circle cx="50" cy="50" r="6" fill="#e53e3e" />
     </svg>
-  )
+  );
 }
 
 const links = [
-  { to: '/',          label: 'Inicio'     },
-  { to: '/explorar',  label: 'Explorar'   },
-  { to: '/favoritos', label: 'Favoritos'  },
-  { to: '/contacto',  label: 'Contacto'   },
-]
+  { to: "/", label: "Inicio" },
+  { to: "/explorar", label: "Explorar" },
+  { to: "/favoritos", label: "Favoritos" },
+  { to: "/contacto", label: "Contacto" },
+];
 
 function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="bg-red-600 shadow-md relative z-50">
@@ -54,11 +68,26 @@ function Navbar() {
           aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isMenuOpen}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
             {isMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             )}
           </svg>
         </button>
@@ -69,12 +98,12 @@ function Navbar() {
             <li key={to}>
               <NavLink
                 to={to}
-                end={to === '/'}
+                end={to === "/"}
                 className={({ isActive }) =>
                   `text-sm font-medium transition-colors ${
                     isActive
-                      ? 'text-white underline underline-offset-4'
-                      : 'text-red-100 hover:text-white'
+                      ? "text-white underline underline-offset-4"
+                      : "text-red-100 hover:text-white"
                   }`
                 }
               >
@@ -93,13 +122,13 @@ function Navbar() {
               <li key={to}>
                 <NavLink
                   to={to}
-                  end={to === '/'}
+                  end={to === "/"}
                   onClick={() => setIsMenuOpen(false)}
                   className={({ isActive }) =>
                     `block text-base font-medium transition-colors ${
                       isActive
-                        ? 'text-white font-bold'
-                        : 'text-red-100 hover:text-white'
+                        ? "text-white font-bold"
+                        : "text-red-100 hover:text-white"
                     }`
                   }
                 >
@@ -111,7 +140,7 @@ function Navbar() {
         </div>
       )}
     </header>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

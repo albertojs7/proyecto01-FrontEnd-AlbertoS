@@ -1,30 +1,32 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState } from "react";
 
-const FavoritesContext = createContext()
+const FavoritesContext = createContext();
 
 export function FavoritesProvider({ children }) {
-  const [favorites, setFavorites] = useState([])
+  const [favorites, setFavorites] = useState([]);
 
   function addFavorite(pokemon) {
-    setFavorites(prev => [...prev, pokemon])
+    setFavorites((prev) => [...prev, pokemon]);
   }
 
   function removeFavorite(id) {
-    setFavorites(prev => prev.filter(p => p.id !== id))
+    setFavorites((prev) => prev.filter((p) => p.id !== id));
   }
 
   function isFavorite(id) {
-    return favorites.some(p => p.id === id)
+    return favorites.some((p) => p.id === id);
   }
 
   return (
-    <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite }}>
+    <FavoritesContext.Provider
+      value={{ favorites, addFavorite, removeFavorite, isFavorite }}
+    >
       {children}
     </FavoritesContext.Provider>
-  )
+  );
 }
 
 // Hook para consumir el contexto — más limpio que importar useContext en cada archivo
 export function useFavorites() {
-  return useContext(FavoritesContext)
+  return useContext(FavoritesContext);
 }

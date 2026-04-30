@@ -3,15 +3,19 @@ export default function SearchBar({
   setGlobalInput,
   handleGlobalSearch,
   isSearching,
-  clearSearch
+  clearSearch,
 }) {
   return (
-    <form onSubmit={handleGlobalSearch} className="flex justify-center gap-2 mb-6" role="search">
+    <form
+      onSubmit={handleGlobalSearch}
+      className="flex justify-center gap-2 mb-6"
+      role="search"
+    >
       <input
         type="search"
         placeholder="Buscar entre todos los pokémon..."
         value={globalInput}
-        onChange={e => setGlobalInput(e.target.value)}
+        onChange={(e) => setGlobalInput(e.target.value)}
         aria-label="Búsqueda global de pokémon"
         className="w-full max-w-md border border-gray-300 rounded-full px-5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-400"
       />
@@ -32,5 +36,5 @@ export default function SearchBar({
         </button>
       )}
     </form>
-  )
+  );
 }

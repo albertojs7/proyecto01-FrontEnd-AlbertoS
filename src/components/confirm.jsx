@@ -1,31 +1,34 @@
-import { useRef, forwardRef, useImperativeHandle } from 'react'
+import { useRef, forwardRef, useImperativeHandle } from "react";
 
 // forwardRef permite que el padre llame a modal.current.open()
-const ConfirmModal = forwardRef(function ConfirmModal({ onConfirm, onCancel, pokemonName }, ref) {
-  const dialogRef = useRef(null)
+const ConfirmModal = forwardRef(function ConfirmModal(
+  { onConfirm, onCancel, pokemonName },
+  ref,
+) {
+  const dialogRef = useRef(null);
 
   useImperativeHandle(ref, () => ({
     open() {
-      dialogRef.current?.showModal()
+      dialogRef.current?.showModal();
     },
     close() {
-      dialogRef.current?.close()
+      dialogRef.current?.close();
     },
-  }))
+  }));
 
   function handleConfirm() {
-    dialogRef.current?.close()
-    onConfirm()
+    dialogRef.current?.close();
+    onConfirm();
   }
 
   function handleCancel() {
-    dialogRef.current?.close()
-    onCancel?.()
+    dialogRef.current?.close();
+    onCancel?.();
   }
 
   // Cierra si el usuario hace click fuera del dialog
   function handleBackdrop(e) {
-    if (e.target === dialogRef.current) handleCancel()
+    if (e.target === dialogRef.current) handleCancel();
   }
 
   return (
@@ -42,7 +45,8 @@ const ConfirmModal = forwardRef(function ConfirmModal({ onConfirm, onCancel, pok
             ¿Quitar de favoritos?
           </h2>
           <p id="modal-desc" className="text-sm text-gray-500">
-            Vas a quitar a <span className="font-semibold capitalize">{pokemonName}</span> de
+            Vas a quitar a{" "}
+            <span className="font-semibold capitalize">{pokemonName}</span> de
             tu lista. Puedes volver a agregarlo cuando quieras.
           </p>
         </div>
@@ -71,7 +75,7 @@ const ConfirmModal = forwardRef(function ConfirmModal({ onConfirm, onCancel, pok
         </div>
       </div>
     </dialog>
-  )
-})
+  );
+});
 
-export default ConfirmModal
+export default ConfirmModal;
