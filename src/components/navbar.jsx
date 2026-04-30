@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-// SVG inline de una pokébola como logo
-function PokeballIcon() {
+function PikachuIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,25 +11,26 @@ function PokeballIcon() {
       aria-hidden="true"
       focusable="false"
     >
-      <circle
-        cx="50"
-        cy="50"
-        r="48"
-        fill="white"
-        stroke="#333"
-        strokeWidth="4"
-      />
-      <path d="M2 50 Q2 2 50 2 Q98 2 98 50Z" fill="#e53e3e" />
-      <rect x="2" y="46" width="96" height="8" fill="#333" />
-      <circle
-        cx="50"
-        cy="50"
-        r="12"
-        fill="white"
-        stroke="#333"
-        strokeWidth="4"
-      />
-      <circle cx="50" cy="50" r="6" fill="#e53e3e" />
+      {/* Orejas */}
+      <polygon points="25,42 18,8 38,36" fill="#f5c800"/>
+      <polygon points="75,42 82,8 62,36" fill="#f5c800"/>
+      <polygon points="18,8 26,22 33,12" fill="#1a1a1a"/>
+      <polygon points="82,8 74,22 67,12" fill="#1a1a1a"/>
+      {/* Cara */}
+      <circle cx="50" cy="58" r="38" fill="#f5c800"/>
+      {/* Ojos */}
+      <circle cx="35" cy="48" r="7" fill="#1a1208"/>
+      <circle cx="65" cy="48" r="7" fill="#1a1208"/>
+      <circle cx="32" cy="45" r="2.5" fill="white"/>
+      <circle cx="62" cy="45" r="2.5" fill="white"/>
+      {/* Nariz */}
+      <ellipse cx="50" cy="58" rx="3" ry="2" fill="#3a1a08"/>
+      {/* Boca */}
+      <path d="M43 63 Q50 70 57 63" stroke="#3a1a08" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      <path d="M43 63 Q41 60 43 57" stroke="#3a1a08" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      {/* Cachetes */}
+      <circle cx="22" cy="65" r="11" fill="#e8302a" opacity="0.85"/>
+      <circle cx="78" cy="65" r="11" fill="#e8302a" opacity="0.85"/>
     </svg>
   );
 }
@@ -57,7 +57,7 @@ function Navbar() {
           aria-label="Pokédex — ir al inicio"
           onClick={() => setIsMenuOpen(false)}
         >
-          <PokeballIcon />
+          <PikachuIcon />
           <span>Pokédex</span>
         </NavLink>
 

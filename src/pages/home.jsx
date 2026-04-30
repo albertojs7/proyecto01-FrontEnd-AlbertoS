@@ -110,7 +110,7 @@ function HomePage() {
                 />
               </svg>
             </div>
-            <h3 className="font-bold text-gray-800">Búsqueda Global</h3>
+            <h3 className="font-bold text-gray-800">Búsqueda global</h3>
             <p className="text-sm text-gray-500">
               Encuentra rápidamente a cualquier Pokémon de las 9 generaciones o
               filtra usando sus tipos.
@@ -134,7 +134,7 @@ function HomePage() {
                 />
               </svg>
             </div>
-            <h3 className="font-bold text-gray-800">Detalles a Fondo</h3>
+            <h3 className="font-bold text-gray-800">Detalles a fondo</h3>
             <p className="text-sm text-gray-500">
               Visualiza fácilmente métricas de HP, ataque, defensa y el flujo
               iterativo de evolución.
@@ -158,9 +158,9 @@ function HomePage() {
                 />
               </svg>
             </div>
-            <h3 className="font-bold text-gray-800">Colección Personal</h3>
+            <h3 className="font-bold text-gray-800">Colección personal</h3>
             <p className="text-sm text-gray-500">
-              Guarda tus criaturas favoritas de la Pokédex para tener siempre un
+              Guarda tus Pokémones favoritos de la Pokédex para tener siempre un
               acceso rápido a ellos.
             </p>
           </div>

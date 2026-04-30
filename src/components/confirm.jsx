@@ -52,7 +52,7 @@ const ConfirmModal = forwardRef(function ConfirmModal(
         </div>
 
         {/*
-          DARK PATTERN INTENCIONAL: "confirmación negativa"
+          DARK PATTERN: "confirmación negativa"
           El botón de acción destructiva (Quitar) está estilizado de forma prominente
           en rojo y ubicado a la derecha (posición de confirmación esperada por el usuario),
           mientras que Cancelar aparece apagado a la izquierda.
