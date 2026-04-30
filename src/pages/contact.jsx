@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import { useToast } from '../context/toastContext'
 
 const INITIAL = { nombre: '', email: '', mensaje: '' }
 
 function ContactPage() {
   const [form, setForm]       = useState(INITIAL)
   const [errors, setErrors]   = useState({})
-  const [submitted, setSubmitted] = useState(false)
+  const { showToast } = useToast()
 
   function validate(fields) {
     const e = {}
@@ -32,37 +33,14 @@ function ContactPage() {
       setErrors(e2)
       return
     }
-    setSubmitted(true)
-  }
-
-  function handleReset() {
+    
+    // Muestra el Toast de éxito y limpia el formulario
+    showToast('¡Mensaje enviado correctamente!', 'success')
     setForm(INITIAL)
     setErrors({})
-    setSubmitted(false)
   }
 
   const isValid  = Object.keys(validate(form)).length === 0
-
-  if (submitted) return (
-    <main className="max-w-lg mx-auto px-4 py-20 text-center">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
-        viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2"
-        strokeLinecap="round" strokeLinejoin="round"
-        aria-hidden="true" className="mx-auto mb-4"
-      >
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-        <polyline points="22 4 12 14.01 9 11.01" />
-      </svg>
-      <h1 className="text-2xl font-bold text-gray-800 mb-2">¡Mensaje enviado!</h1>
-      <p className="text-gray-500 mb-6">Gracias por escribirnos, {form.nombre}.</p>
-      <button
-        onClick={handleReset}
-        className="bg-red-600 text-white px-6 py-2 rounded-full text-sm hover:bg-red-700 transition-colors"
-      >
-        Enviar otro mensaje
-      </button>
-    </main>
-  )
 
   return (
     <main className="max-w-lg mx-auto px-4 py-12">

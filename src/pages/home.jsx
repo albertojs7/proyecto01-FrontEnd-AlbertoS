@@ -63,7 +63,7 @@ function HomePage() {
           </div>
 
           {/* Composición de imágenes / Arte */}
-          <div className="flex-1 flex justify-center relative w-full h-[360px] max-w-sm">
+          <div className="flex-1 hidden sm:flex justify-center relative w-full h-[360px] max-w-sm mt-16 md:mt-0 mx-auto">
             {/* Círculo difuminado de fondo (Blob) */}
             <div className="absolute inset-0 bg-red-500 rounded-full blur-3xl opacity-20 transform scale-90"></div>
             
@@ -72,22 +72,22 @@ function HomePage() {
               <img
                 src={displayImages[0].url}
                 alt={displayImages[0].name}
-                className="absolute top-0 right-0 w-44 h-44 drop-shadow-xl z-20 hover:scale-110 transition-transform object-contain"
+                className="absolute top-0 right-0 w-28 h-28 sm:w-44 sm:h-44 drop-shadow-xl z-20 hover:scale-110 transition-transform object-contain"
               />
               <img
                 src={displayImages[1].url}
                 alt={displayImages[1].name}
-                className="absolute bottom-0 right-10 w-40 h-40 drop-shadow-xl z-10 hover:scale-110 transition-transform object-contain"
+                className="absolute bottom-0 right-0 sm:right-10 w-24 h-24 sm:w-40 sm:h-40 drop-shadow-xl z-10 hover:scale-110 transition-transform object-contain"
               />
               <img
                 src={displayImages[2].url}
                 alt={displayImages[2].name}
-                className="absolute top-12 left-0 w-36 h-36 drop-shadow-xl z-10 hover:scale-110 transition-transform object-contain"
+                className="absolute top-8 sm:top-12 left-0 w-24 h-24 sm:w-36 sm:h-36 drop-shadow-xl z-10 hover:scale-110 transition-transform object-contain"
               />
               <img
                 src={displayImages[3].url}
                 alt={displayImages[3].name}
-                className="absolute bottom-10 left-12 w-32 h-32 drop-shadow-xl z-0 hover:scale-110 transition-transform object-contain"
+                className="absolute bottom-2 sm:bottom-10 left-4 sm:left-12 w-20 h-20 sm:w-32 sm:h-32 drop-shadow-xl z-0 hover:scale-110 transition-transform object-contain"
               />
             </div>
           </div>

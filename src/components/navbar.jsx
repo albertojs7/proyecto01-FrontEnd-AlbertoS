@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 // SVG inline de una pokébola como logo
@@ -28,8 +29,10 @@ const links = [
 ]
 
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   return (
-    <header className="bg-red-600 shadow-md">
+    <header className="bg-red-600 shadow-md relative z-50">
       <nav
         className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between"
         aria-label="Navegación principal"
@@ -38,12 +41,30 @@ function Navbar() {
           to="/"
           className="flex items-center gap-2 text-white font-bold text-lg"
           aria-label="Pokédex — ir al inicio"
+          onClick={() => setIsMenuOpen(false)}
         >
           <PokeballIcon />
           <span>Pokédex</span>
         </NavLink>
 
-        <ul className="flex gap-6 list-none m-0 p-0" role="list">
+        {/* Botón menú móvil */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden text-white focus:outline-none"
+          aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={isMenuOpen}
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {isMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+
+        {/* Menú Desktop */}
+        <ul className="hidden md:flex gap-6 list-none m-0 p-0" role="list">
           {links.map(({ to, label }) => (
             <li key={to}>
               <NavLink
@@ -63,6 +84,32 @@ function Navbar() {
           ))}
         </ul>
       </nav>
+
+      {/* Menú Móvil */}
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-red-600 shadow-lg">
+          <ul className="flex flex-col list-none m-0 p-4 gap-4" role="list">
+            {links.map(({ to, label }) => (
+              <li key={to}>
+                <NavLink
+                  to={to}
+                  end={to === '/'}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `block text-base font-medium transition-colors ${
+                      isActive
+                        ? 'text-white font-bold'
+                        : 'text-red-100 hover:text-white'
+                    }`
+                  }
+                >
+                  {label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   )
 }
