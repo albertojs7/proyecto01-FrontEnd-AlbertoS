@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useToast } from "../context/toastContext";
-import { useFavorites } from "../context/favoritesContext";
+import { useFavorites } from "../hooks/useFavorites";
 import ConfirmModal from "./confirm";
 
 function FavoriteButton({ pokemon, compact = false }) {

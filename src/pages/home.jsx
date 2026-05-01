@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { useFavorites } from "../context/favoritesContext";
+import { useFavorites } from "../hooks/useFavorites";
 
 function HomePage() {
   const { favorites } = useFavorites();
