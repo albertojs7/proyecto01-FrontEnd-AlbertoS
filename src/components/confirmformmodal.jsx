@@ -14,29 +14,21 @@ const ConfirmFormModal = forwardRef(function ConfirmFormModal(
       dialogRef.current?.close();
     },
   }));
-
-  // Suscribirse VIP y luego enviar
   function handleConfirm() {
     dialogRef.current?.close();
     onConfirm();
   }
-
-  // Rechazar suscripción y solo enviar
   function handleCancel() {
     dialogRef.current?.close();
     onCancel?.();
   }
-
-  // Cierra si el usuario hace click fuera del dialog (comportamiento de cancelar el modal sin enviar)
   function handleBackdrop(e) {
     if (e.target === dialogRef.current) {
       dialogRef.current?.close();
     }
   }
-
-  // Cierra si el usuario presiona ESC
   function handleCancelEvent(e) {
-    e.preventDefault(); // Evita que se dispare onCancel o se cierre nativamente
+    e.preventDefault(); 
     dialogRef.current?.close();
   }
 

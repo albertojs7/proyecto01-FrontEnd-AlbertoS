@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Loading from "./loading";
-
-// Convierte el árbol en niveles:
-// [ [base], [evo1, evo2], [evo1a, evo1b, evo2a] ]
-// Cada nodo lleva sus details para saber cómo evolucionó
 function buildLevels(chain) {
   const levels = [];
 
@@ -27,8 +23,6 @@ function buildLevels(chain) {
 
     walk(nextNodes, depth + 1);
   }
-
-  // El nodo raíz no tiene details (es la forma base)
   walk([{ ...chain, evolution_details: [] }], 0);
 
   return levels;
@@ -140,21 +134,16 @@ function EvolutionChain({ evolutionUrl, currentId }) {
             key={levelIndex}
             className="flex flex-col items-center gap-3 w-full"
           >
-            {/* Flecha entre niveles */}
             {!isFirst &&
               (level.length > 2 ? (
-                // Muchas evoluciones, una sola flecha genérica centrada
                 <Arrow label="Evoluciona a" />
               ) : (
-                // 1 o 2 evoluciones, una flecha por cada una con su condición
                 <div className="flex gap-6 justify-center">
                   {level.map((evo) => (
                     <Arrow key={evo.id} label={getEvoLabel(evo.details)} />
                   ))}
                 </div>
               ))}
-
-            {/* Tarjetas del nivel actual */}
             <div className="flex flex-wrap justify-center gap-2">
               {level.map((evo) => (
                 <EvoCard

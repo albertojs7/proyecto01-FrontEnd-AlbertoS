@@ -49,12 +49,8 @@ function getIdFromUrl(url) {
 
 function ExplorePage() {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  // Filtros pendientes (lo que el usuario seleccionó pero aún no aplicó)
   const [pendingGen, setPendingGen] = useState(0);
   const [pendingType, setPendingType] = useState("todos");
-
-  // Filtros activos (lo que realmente se usa para el fetch)
   const [activeGen, setActiveGen] = useState(0);
   const [activeType, setActiveType] = useState("todos");
 
@@ -88,16 +84,11 @@ function ExplorePage() {
         }`;
 
   const { data, loading, error } = useFetch(fetchUrl);
-
-  // Cuando filtramos por tipo, la API devuelve { pokemon: [{ pokemon: { name, url } }] }
-  // Normalizamos a { name, url } igual que la lista normal
   const pageResults = (() => {
     if (!data) return [];
 
     if (hasTypeFilter) {
       if (!data.pokemon) return [];
-
-      // Filtra por generación si hay una activa
       return data.pokemon
         .map((p) => p.pokemon)
         .filter((p) => {
@@ -108,15 +99,11 @@ function ExplorePage() {
 
     return data.results ?? [];
   })();
-
-  // Filtro local sobre los resultados de la página
   const displayed = localSearch
     ? pageResults.filter((p) => p.name.includes(localSearch.toLowerCase()))
     : hasTypeFilter
       ? pageResults // tipo devuelve todos — sin paginación extra
       : pageResults;
-
-  // Paginación — solo aplica cuando no hay filtro de tipo ni búsqueda global
   const totalPages =
     hasTypeFilter || isSearching ? 1 : Math.ceil((data?.count ?? 0) / LIMIT);
 
@@ -170,7 +157,6 @@ function ExplorePage() {
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-8">
-      {/* Búsqueda global (solo visible si no hay filtros activos) */}
       {!(hasTypeFilter || hasGenFilter) && (
         <SearchBar
           globalInput={globalInput}
@@ -180,8 +166,6 @@ function ExplorePage() {
           clearSearch={clearSearch}
         />
       )}
-
-      {/* Filtros — ocultos durante búsqueda global */}
       {!isSearching && (
         <div className="flex flex-wrap items-end justify-center gap-4 mb-8">
           <div className="flex flex-col gap-1">
@@ -236,14 +220,12 @@ function ExplorePage() {
               value={localInput}
               onChange={(e) => {
                 setLocalInput(e.target.value);
-                setLocalSearch(e.target.value.trim()); // este sí en tiempo real
+                setLocalSearch(e.target.value.trim());
               }}
               aria-label="Filtrar pokémon en esta página"
               className="border border-[#4c1d95] bg-[#1e1e24] text-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 placeholder:text-gray-500"
             />
           </div>
-
-          {/* Botón Aplicar — resaltado si hay cambios pendientes */}
           <button
             onClick={applyFilters}
             disabled={!filtersChanged}
@@ -254,8 +236,6 @@ function ExplorePage() {
           >
             Aplicar filtros
           </button>
-
-          {/* Limpiar filtros */}
           {(activeGen !== 0 || activeType !== "todos") && (
             <button
               onClick={() => {
@@ -273,11 +253,7 @@ function ExplorePage() {
           )}
         </div>
       )}
-
-      {/* Loading */}
       {(loading || loadingAll) && <Loading />}
-
-      {/* Error */}
       {error && !loading && (
         <div className="text-center py-20">
           <p className="text-red-500 mb-4">Error: {error}</p>
@@ -289,8 +265,6 @@ function ExplorePage() {
           </button>
         </div>
       )}
-
-      {/* Resultados búsqueda global */}
       {isSearching && !loadingAll && (
         <>
           {globalResults.length === 0 ? (
@@ -313,8 +287,6 @@ function ExplorePage() {
           )}
         </>
       )}
-
-      {/* Resultados normales */}
       {!isSearching && !loading && !error && (
         <>
           {displayed.length === 0 ? (
@@ -339,8 +311,6 @@ function ExplorePage() {
           )}
         </>
       )}
-
-      {/* Paginación — solo sin filtro de tipo */}
       {!isSearching && !hasTypeFilter && !localSearch && !loading && (
         <Pagination page={page} totalPages={totalPages} goToPage={goToPage} />
       )}

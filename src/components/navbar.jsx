@@ -11,26 +11,17 @@ function MasterBallIcon() {
       aria-hidden="true"
       focusable="false"
     >
-      {/* Contorno exterior */}
       <circle cx="50" cy="50" r="45" fill="#1a1a1a" />
-      {/* Mitad superior (Morado) */}
       <path d="M 5 50 A 45 45 0 0 1 95 50 Z" fill="#6B21A8" />
-      {/* Mitad inferior (Blanco) */}
       <path d="M 5 50 A 45 45 0 0 0 95 50 Z" fill="#e5e7eb" />
-      {/* Banda negra central */}
       <rect x="5" y="46" width="90" height="8" fill="#1a1a1a" />
-      {/* Botón central (Exterior negro) */}
       <circle cx="50" cy="50" r="14" fill="#1a1a1a" />
-      {/* Botón central (Fondo blanco) */}
       <circle cx="50" cy="50" r="10" fill="#e5e7eb" />
-      {/* Botón central (Interior) */}
       <circle cx="50" cy="50" r="5" fill="#1a1a1a" />
-      {/* "M" de la Master Ball */}
       <path
         d="M 35 25 L 35 40 L 40 40 L 40 30 L 50 40 L 60 30 L 60 40 L 65 40 L 65 25 L 56 25 L 50 32 L 44 25 Z"
         fill="#ffffff"
       />
-      {/* Círculos rosados */}
       <circle cx="25" cy="30" r="8" fill="#F472B6" />
       <circle cx="75" cy="30" r="8" fill="#F472B6" />
     </svg>
@@ -62,8 +53,6 @@ function Navbar() {
           <MasterBallIcon />
           <span className="text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">Pokédex</span>
         </NavLink>
-
-        {/* Botón menú móvil */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden text-white focus:outline-none"
@@ -93,8 +82,6 @@ function Navbar() {
             )}
           </svg>
         </button>
-
-        {/* Menú Desktop */}
         <ul className="hidden md:flex gap-6 list-none m-0 p-0" role="list">
           {links.map(({ to, label }) => (
             <li key={to}>
@@ -111,8 +98,6 @@ function Navbar() {
           ))}
         </ul>
       </nav>
-
-      {/* Menú Móvil */}
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-[#140b2e] shadow-lg">
           <ul className="flex flex-col list-none m-0 p-4 gap-4" role="list">

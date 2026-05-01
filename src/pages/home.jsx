@@ -4,24 +4,19 @@ import { useFavorites } from "../context/favoritesContext";
 
 function HomePage() {
   const { favorites } = useFavorites();
-
-  // Seleccionamos aleatoriamente 4 imágenes entre los favoritos
   const displayImages = useMemo(() => {
-    // Barajamos los favoritos disponibles
     const shuffled = [...favorites].sort(() => 0.5 - Math.random());
     const selected = shuffled.slice(0, 4);
 
     const places = [];
     for (let i = 0; i < 4; i++) {
       if (selected[i]) {
-        // Encontró un Pokemon
         places.push({
           id: selected[i].id,
           name: selected[i].name,
           url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selected[i].id}.png`,
         });
       } else {
-        // No hay suficientes favoritos -> Rellenamos con el sprite de una Pokéball
         places.push({
           id: `placeholder-${i}`,
           name: "Pokéball",
@@ -35,7 +30,6 @@ function HomePage() {
   return (
     <main className="w-full flex justify-center">
       <div className="w-full max-w-5xl">
-        {/* HERO SECTION */}
         <section className="flex flex-col md:flex-row items-center justify-between gap-12 px-4 py-20 md:py-32">
           <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-6">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-100 leading-tight">
@@ -90,8 +84,6 @@ function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* FEATURES SECTION */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 pb-24">
           <div className="bg-[#1e1e24] rounded-2xl shadow-sm border border-gray-800 p-6 flex flex-col items-center text-center gap-3">
             <div className="w-12 h-12 bg-blue-900/30 text-blue-400 rounded-full flex items-center justify-center">

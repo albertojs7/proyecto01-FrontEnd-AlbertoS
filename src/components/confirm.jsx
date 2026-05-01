@@ -24,8 +24,6 @@ const ConfirmModal = forwardRef(function ConfirmModal(
     dialogRef.current?.close();
     onCancel?.();
   }
-
-  // Cierra si el usuario hace click fuera del dialog
   function handleBackdrop(e) {
     if (e.target === dialogRef.current) handleCancel();
   }

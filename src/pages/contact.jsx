@@ -24,7 +24,6 @@ function ContactPage() {
   function handleChange(e) {
     const next = { ...form, [e.target.name]: e.target.value };
     setForm(next);
-    // Revalida en tiempo real solo si ya hubo un intento de envío
     if (Object.keys(errors).length > 0) setErrors(validate(next));
   }
 
@@ -35,11 +34,8 @@ function ContactPage() {
       setErrors(e2);
       return;
     }
-    // Abrir el modal en vez de enviar directamente
     modalRef.current?.open();
   }
-
-  // Lógica tras la confirmación en el modal
   function executeSend(subscribed) {
     if (subscribed) {
       showToast("¡Mensaje enviado y suscripción VIP activada!", "success");
@@ -60,7 +56,6 @@ function ContactPage() {
       </p>
 
       <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
-        {/* Nombre */}
         <div className="flex flex-col gap-1">
           <label htmlFor="nombre" className="text-sm font-medium text-gray-400">
             Nombre
@@ -87,8 +82,6 @@ function ContactPage() {
             </p>
           )}
         </div>
-
-        {/* Email */}
         <div className="flex flex-col gap-1">
           <label htmlFor="email" className="text-sm font-medium text-gray-400">
             Email
@@ -115,8 +108,6 @@ function ContactPage() {
             </p>
           )}
         </div>
-
-        {/* Mensaje */}
         <div className="flex flex-col gap-1">
           <label
             htmlFor="mensaje"
@@ -157,8 +148,6 @@ function ContactPage() {
             </span>
           </div>
         </div>
-
-        {/* Botón - disabled hasta que el form sea válido */}
         <button
           type="submit"
           disabled={!isValid}
@@ -170,8 +159,6 @@ function ContactPage() {
           Enviar mensaje
         </button>
       </form>
-
-      {/* Modal interactivo de Dark Pattern */}
       <ConfirmFormModal
         ref={modalRef}
         onConfirm={() => executeSend(true)}

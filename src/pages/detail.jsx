@@ -48,22 +48,16 @@ function DetailPage() {
   const habilidades = pokemon.abilities;
   const stats = pokemon.stats;
   const movimientos = pokemon.moves.slice(0, 20);
-
-  // Busca la descripción en español, si no en inglés
   const descripcion =
     species?.flavor_text_entries?.find((e) => e.language.name === "es")
       ?.flavor_text ??
     species?.flavor_text_entries?.find((e) => e.language.name === "en")
       ?.flavor_text ??
     "";
-
-  // Limpia los caracteres de salto de línea raros que trae la API
   const descripcionLimpia = descripcion.replace(/[\n\f]/g, " ");
 
   const imagenNormal = pokemon.sprites.front_default;
   const imagenShiny = pokemon.sprites.front_shiny;
-
-  // Otras formas (Megas, GMax, formas regionales) que no sean la actual
   const variedades =
     species?.varieties?.filter((v) => v.pokemon.name !== pokemon.name) ?? [];
 
@@ -77,10 +71,7 @@ function DetailPage() {
       >
         ← Volver
       </Link>
-
-      {/* Header */}
       <div className="bg-[#1e1e24] border border-gray-800 rounded-2xl shadow p-6 mb-4 flex flex-col sm:flex-row items-center gap-6">
-        {/* Imágenes: normal + shiny */}
         <div className="flex gap-4">
           <figure className="flex flex-col items-center">
             <img
@@ -107,8 +98,6 @@ function DetailPage() {
             </figure>
           )}
         </div>
-
-        {/* Info básica */}
         <div className="flex-1 w-full">
           <div className="flex items-center justify-between mb-1">
             <p className="text-sm text-gray-500">
@@ -123,15 +112,11 @@ function DetailPage() {
           <h1 className="text-3xl font-bold capitalize text-gray-200 mb-2">
             {pokemon.name}
           </h1>
-
-          {/* Tipos */}
           <div className="flex gap-2 mb-4">
             {tipos.map((tipo) => (
               <TypeBadge key={tipo} type={tipo} size="lg" />
             ))}
           </div>
-
-          {/* Descripción */}
           {descripcionLimpia && (
             <p className="text-sm text-gray-400 italic leading-relaxed">
               {descripcionLimpia}
@@ -141,7 +126,6 @@ function DetailPage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-        {/* Medidas */}
         <Section title="Medidas">
           <dl className="grid grid-cols-2 gap-3 text-gray-200">
             <div>
@@ -164,8 +148,6 @@ function DetailPage() {
             </div>
           </dl>
         </Section>
-
-        {/* Habilidades */}
         <Section title="Habilidades">
           <ul className="flex flex-col gap-2">
             {habilidades.map(({ ability, is_hidden }) => (
@@ -185,7 +167,6 @@ function DetailPage() {
       </div>
       
       <div className="flex flex-col gap-4">
-      {/* Estadísticas */}
       <Section title="Estadísticas base">
         <div className="flex flex-col gap-3">
           {stats.map(({ stat, base_stat }) => (
@@ -201,8 +182,6 @@ function DetailPage() {
           </div>
         </div>
       </Section>
-
-      {/* Movimientos */}
       <Section title={`Movimientos (primeros ${movimientos.length})`}>
         {movimientos.length > 0 ? (
           <ul className="flex flex-wrap gap-2">
@@ -229,8 +208,6 @@ function DetailPage() {
           currentId={String(pokemon.id)}
         />
       </Section>
-
-      {/* Formas alternativas / Variedades */}
       {variedades.length > 0 && (
         <Section title="Formas alternativas">
           <div className="flex flex-wrap gap-4">
