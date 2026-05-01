@@ -62,16 +62,22 @@ function EvoCard({ id, name, isCurrent }) {
   return (
     <Link
       to={`/pokemon/${id}`}
-      className={`flex flex-col items-center gap-1 p-3 rounded-2xl transition-colors
-        ${isCurrent ? "bg-red-50 ring-2 ring-red-400" : "hover:bg-gray-100"}`}
+      className={`group flex flex-col items-center gap-1 p-3 rounded-2xl hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition-all duration-300
+        ${isCurrent ? "bg-[#1e1e24] ring-2 ring-[#4c1d95]" : "hover:bg-[#1e1e24]"}`}
       aria-label={`Ver detalles de ${name}${isCurrent ? " (actual)" : ""}`}
       aria-current={isCurrent ? "page" : undefined}
     >
-      <img src={imagen} alt={name} width={80} height={80} />
-      <span className="text-xs font-semibold capitalize text-gray-700">
+      <img
+        src={imagen}
+        alt={name}
+        width={80}
+        height={80}
+        className="transition-transform duration-300 group-hover:scale-110"
+      />
+      <span className="text-xs font-semibold capitalize text-gray-300 group-hover:text-purple-400 transition-colors duration-300">
         {name}
       </span>
-      <span className="text-xs text-gray-400">
+      <span className="text-xs text-gray-500">
         #{String(id).padStart(3, "0")}
       </span>
     </Link>
@@ -137,10 +143,10 @@ function EvolutionChain({ evolutionUrl, currentId }) {
             {/* Flecha entre niveles */}
             {!isFirst &&
               (level.length > 2 ? (
-                // Muchas evoluciones → una sola flecha genérica centrada
+                // Muchas evoluciones, una sola flecha genérica centrada
                 <Arrow label="Evoluciona a" />
               ) : (
-                // 1 o 2 evoluciones → una flecha por cada una con su condición
+                // 1 o 2 evoluciones, una flecha por cada una con su condición
                 <div className="flex gap-6 justify-center">
                   {level.map((evo) => (
                     <Arrow key={evo.id} label={getEvoLabel(evo.details)} />

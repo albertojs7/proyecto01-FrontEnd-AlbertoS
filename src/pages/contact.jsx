@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useToast } from "../context/toastContext";
+import ConfirmFormModal from "../components/confirmformmodal";
 
 const INITIAL = { nombre: "", email: "", mensaje: "" };
 
@@ -7,6 +8,7 @@ function ContactPage() {
   const [form, setForm] = useState(INITIAL);
   const [errors, setErrors] = useState({});
   const { showToast } = useToast();
+  const modalRef = useRef(null);
 
   function validate(fields) {
     const e = {};
@@ -33,9 +35,17 @@ function ContactPage() {
       setErrors(e2);
       return;
     }
+    // Abrir el modal en vez de enviar directamente
+    modalRef.current?.open();
+  }
 
-    // Muestra el Toast de éxito y limpia el formulario
-    showToast("¡Mensaje enviado correctamente!", "success");
+  // Lógica tras la confirmación en el modal
+  function executeSend(subscribed) {
+    if (subscribed) {
+      showToast("¡Mensaje enviado y suscripción VIP activada!", "success");
+    } else {
+      showToast("Mensaje enviado correctamente...", "info");
+    }
     setForm(INITIAL);
     setErrors({});
   }
@@ -44,7 +54,7 @@ function ContactPage() {
 
   return (
     <main className="max-w-lg mx-auto px-4 py-12">
-      <h1 className="text-2xl font-bold text-gray-800 mb-2">Contacto</h1>
+      <h1 className="text-2xl font-bold text-gray-200 mb-2">Contacto</h1>
       <p className="text-gray-500 text-sm mb-8">
         ¿Tienes preguntas o sugerencias? Escríbenos.
       </p>
@@ -52,7 +62,7 @@ function ContactPage() {
       <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
         {/* Nombre */}
         <div className="flex flex-col gap-1">
-          <label htmlFor="nombre" className="text-sm font-medium text-gray-700">
+          <label htmlFor="nombre" className="text-sm font-medium text-gray-400">
             Nombre
           </label>
           <input
@@ -64,11 +74,11 @@ function ContactPage() {
             placeholder="Tu nombre"
             aria-describedby={errors.nombre ? "error-nombre" : undefined}
             aria-invalid={!!errors.nombre}
-            className={`border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2
+            className={`border bg-[#1e1e24] text-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2
               ${
                 errors.nombre
                   ? "border-red-400 focus:ring-red-300"
-                  : "border-gray-300 focus:ring-red-400"
+                  : "border-gray-700 focus:ring-purple-400"
               }`}
           />
           {errors.nombre && (
@@ -80,7 +90,7 @@ function ContactPage() {
 
         {/* Email */}
         <div className="flex flex-col gap-1">
-          <label htmlFor="email" className="text-sm font-medium text-gray-700">
+          <label htmlFor="email" className="text-sm font-medium text-gray-400">
             Email
           </label>
           <input
@@ -92,11 +102,11 @@ function ContactPage() {
             placeholder="correo@ejemplo.com"
             aria-describedby={errors.email ? "error-email" : undefined}
             aria-invalid={!!errors.email}
-            className={`border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2
+            className={`border bg-[#1e1e24] text-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2
               ${
                 errors.email
                   ? "border-red-400 focus:ring-red-300"
-                  : "border-gray-300 focus:ring-red-400"
+                  : "border-gray-700 focus:ring-purple-400"
               }`}
           />
           {errors.email && (
@@ -110,7 +120,7 @@ function ContactPage() {
         <div className="flex flex-col gap-1">
           <label
             htmlFor="mensaje"
-            className="text-sm font-medium text-gray-700"
+            className="text-sm font-medium text-gray-400"
           >
             Mensaje
           </label>
@@ -123,14 +133,14 @@ function ContactPage() {
             placeholder="Tu mensaje aquí..."
             aria-describedby={errors.mensaje ? "error-mensaje" : undefined}
             aria-invalid={!!errors.mensaje}
-            className={`border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 resize-none
+            className={`border bg-[#1e1e24] text-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 resize-none
               ${
                 errors.mensaje
                   ? "border-red-400 focus:ring-red-300"
-                  : "border-gray-300 focus:ring-red-400"
+                  : "border-gray-700 focus:ring-purple-400"
               }`}
           />
-          <div className="flex justify-between items-start">
+          <div className="flex justify-between items-start mt-1">
             {errors.mensaje ? (
               <p
                 id="error-mensaje"
@@ -142,7 +152,7 @@ function ContactPage() {
             ) : (
               <span />
             )}
-            <span className="text-xs text-gray-400 shrink-0 ml-2">
+            <span className="text-xs text-gray-500 shrink-0 ml-2">
               {form.mensaje.length} / 10 mín.
             </span>
           </div>
@@ -153,13 +163,20 @@ function ContactPage() {
           type="submit"
           disabled={!isValid}
           aria-disabled={!isValid}
-          className="bg-red-600 text-white py-2 rounded-full text-sm font-medium
-            transition-colors hover:bg-red-700
+          className="bg-[#4c1d95] text-white py-2 rounded-full text-sm font-medium
+            transition-colors hover:bg-[#5b21b6]
             disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Enviar mensaje
         </button>
       </form>
+
+      {/* Modal interactivo de Dark Pattern */}
+      <ConfirmFormModal
+        ref={modalRef}
+        onConfirm={() => executeSend(true)}
+        onCancel={() => executeSend(false)}
+      />
     </main>
   );
 }

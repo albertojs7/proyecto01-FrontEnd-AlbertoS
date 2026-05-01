@@ -9,8 +9,8 @@ import Loading from "../components/loading";
 
 function Section({ title, children }) {
   return (
-    <section className="bg-white rounded-2xl shadow p-5">
-      <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">
+    <section className="bg-[#1e1e24] border border-[#2d2d35] rounded-2xl shadow p-5">
+      <h2 className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">
         {title}
       </h2>
       {children}
@@ -72,14 +72,14 @@ function DetailPage() {
       {/* Volver */}
       <Link
         to="/explorar"
-        className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800 mb-6"
+        className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-300 mb-6"
         aria-label="Volver a explorar"
       >
         ← Volver
       </Link>
 
       {/* Header */}
-      <div className="bg-white rounded-2xl shadow p-6 mb-4 flex flex-col sm:flex-row items-center gap-6">
+      <div className="bg-[#1e1e24] border border-gray-800 rounded-2xl shadow p-6 mb-4 flex flex-col sm:flex-row items-center gap-6">
         {/* Imágenes: normal + shiny */}
         <div className="flex gap-4">
           <figure className="flex flex-col items-center">
@@ -89,7 +89,7 @@ function DetailPage() {
               width={120}
               height={120}
             />
-            <figcaption className="text-xs text-gray-400 mt-1">
+            <figcaption className="text-xs text-gray-500 mt-1">
               Normal
             </figcaption>
           </figure>
@@ -101,7 +101,7 @@ function DetailPage() {
                 width={120}
                 height={120}
               />
-              <figcaption className="text-xs text-yellow-500 mt-1">
+              <figcaption className="text-xs text-yellow-500 mt-1 drop-shadow-[0_0_5px_rgba(234,179,8,0.4)]">
                 ✦ Shiny
               </figcaption>
             </figure>
@@ -109,9 +109,9 @@ function DetailPage() {
         </div>
 
         {/* Info básica */}
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <div className="flex items-center justify-between mb-1">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-500">
               #{String(pokemon.id).padStart(3, "0")}
             </p>
             <FavoriteButton
@@ -120,7 +120,7 @@ function DetailPage() {
             />
           </div>
 
-          <h1 className="text-3xl font-bold capitalize text-gray-800 mb-2">
+          <h1 className="text-3xl font-bold capitalize text-gray-200 mb-2">
             {pokemon.name}
           </h1>
 
@@ -133,7 +133,7 @@ function DetailPage() {
 
           {/* Descripción */}
           {descripcionLimpia && (
-            <p className="text-sm text-gray-600 italic leading-relaxed">
+            <p className="text-sm text-gray-400 italic leading-relaxed">
               {descripcionLimpia}
             </p>
           )}
@@ -143,21 +143,21 @@ function DetailPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         {/* Medidas */}
         <Section title="Medidas">
-          <dl className="grid grid-cols-2 gap-3">
+          <dl className="grid grid-cols-2 gap-3 text-gray-200">
             <div>
-              <dt className="text-xs text-gray-400">Altura</dt>
+              <dt className="text-xs text-gray-500">Altura</dt>
               <dd className="text-lg font-semibold">
                 {(pokemon.height / 10).toFixed(1)} m
               </dd>
             </div>
             <div>
-              <dt className="text-xs text-gray-400">Peso</dt>
+              <dt className="text-xs text-gray-500">Peso</dt>
               <dd className="text-lg font-semibold">
                 {(pokemon.weight / 10).toFixed(1)} kg
               </dd>
             </div>
             <div>
-              <dt className="text-xs text-gray-400">Experiencia base</dt>
+              <dt className="text-xs text-gray-500">Experiencia base</dt>
               <dd className="text-lg font-semibold">
                 {pokemon.base_experience ?? "—"}
               </dd>
@@ -170,11 +170,11 @@ function DetailPage() {
           <ul className="flex flex-col gap-2">
             {habilidades.map(({ ability, is_hidden }) => (
               <li key={ability.name} className="flex items-center gap-2">
-                <span className="capitalize text-sm font-medium text-gray-700">
+                <span className="capitalize text-sm font-medium text-gray-300">
                   {ability.name.replace("-", " ")}
                 </span>
                 {is_hidden && (
-                  <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
+                  <span className="text-xs bg-[#2a0e61] text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded-full">
                     oculta
                   </span>
                 )}
@@ -183,7 +183,8 @@ function DetailPage() {
           </ul>
         </Section>
       </div>
-
+      
+      <div className="flex flex-col gap-4">
       {/* Estadísticas */}
       <Section title="Estadísticas base">
         <div className="flex flex-col gap-3">
@@ -208,7 +209,7 @@ function DetailPage() {
             {movimientos.map(({ move }) => (
               <li
                 key={move.name}
-                className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full capitalize"
+                className="text-xs bg-[#2a0e61] text-purple-300 px-3 py-1 rounded-full capitalize"
               >
                 {move.name.replace(/-/g, " ")}
               </li>
@@ -241,15 +242,16 @@ function DetailPage() {
                 <Link
                   key={varInfo.name}
                   to={`/pokemon/${varInfo.name}`}
-                  className="flex flex-col items-center gap-1 p-3 rounded-2xl hover:bg-gray-100 transition-colors"
+                  className="group flex flex-col items-center gap-1 p-3 rounded-2xl hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition-all duration-300"
                 >
                   <img
                     src={varImagen}
                     alt={varInfo.name}
                     width={80}
                     height={80}
+                    className="transition-transform duration-300 group-hover:scale-110"
                   />
-                  <span className="text-xs font-semibold capitalize text-gray-700">
+                  <span className="text-xs font-semibold capitalize text-gray-300 group-hover:text-purple-400 transition-colors duration-300">
                     {varInfo.name.replace(/-/g, " ")}
                   </span>
                 </Link>
@@ -258,6 +260,7 @@ function DetailPage() {
           </div>
         </Section>
       )}
+      </div>
     </main>
   );
 }

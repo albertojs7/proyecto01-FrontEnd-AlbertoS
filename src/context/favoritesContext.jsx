@@ -26,7 +26,6 @@ export function FavoritesProvider({ children }) {
   );
 }
 
-// Hook para consumir el contexto — más limpio que importar useContext en cada archivo
 export function useFavorites() {
   return useContext(FavoritesContext);
 }

@@ -95,7 +95,6 @@ function ExplorePage() {
     if (!data) return [];
 
     if (hasTypeFilter) {
-      // Evita errores si 'data' aún tiene la forma de la petición anterior mientras carga
       if (!data.pokemon) return [];
 
       // Filtra por generación si hay una activa
@@ -186,7 +185,7 @@ function ExplorePage() {
       {!isSearching && (
         <div className="flex flex-wrap items-end justify-center gap-4 mb-8">
           <div className="flex flex-col gap-1">
-            <label htmlFor="gen-filter" className="text-xs text-gray-500 px-1">
+            <label htmlFor="gen-filter" className="text-xs text-gray-400 px-1">
               Generación
             </label>
             <select
@@ -194,7 +193,7 @@ function ExplorePage() {
               value={pendingGen}
               onChange={(e) => setPendingGen(Number(e.target.value))}
               aria-label="Filtrar por generación"
-              className="border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-400"
+              className="border border-[#4c1d95] bg-[#1e1e24] text-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
             >
               {GENERATIONS.map((g, i) => (
                 <option key={g.label} value={i}>
@@ -205,7 +204,7 @@ function ExplorePage() {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label htmlFor="type-filter" className="text-xs text-gray-500 px-1">
+            <label htmlFor="type-filter" className="text-xs text-gray-400 px-1">
               Tipo
             </label>
             <select
@@ -213,7 +212,7 @@ function ExplorePage() {
               value={pendingType}
               onChange={(e) => setPendingType(e.target.value)}
               aria-label="Filtrar por tipo"
-              className="border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 capitalize"
+              className="border border-[#4c1d95] bg-[#1e1e24] text-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 capitalize"
             >
               {TYPES.map((t) => (
                 <option key={t} value={t} className="capitalize">
@@ -226,7 +225,7 @@ function ExplorePage() {
           <div className="flex flex-col gap-1">
             <label
               htmlFor="local-search"
-              className="text-xs text-gray-500 px-1"
+              className="text-xs text-gray-400 px-1"
             >
               En esta página
             </label>
@@ -240,7 +239,7 @@ function ExplorePage() {
                 setLocalSearch(e.target.value.trim()); // este sí en tiempo real
               }}
               aria-label="Filtrar pokémon en esta página"
-              className="border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-400"
+              className="border border-[#4c1d95] bg-[#1e1e24] text-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 placeholder:text-gray-500"
             />
           </div>
 
@@ -250,7 +249,7 @@ function ExplorePage() {
             disabled={!filtersChanged}
             aria-disabled={!filtersChanged}
             className="px-6 py-2 rounded-full text-sm font-medium transition-colors
-              bg-red-600 text-white hover:bg-red-700
+              bg-[#4c1d95] text-white hover:bg-[#5b21b6]
               disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Aplicar filtros
@@ -267,7 +266,7 @@ function ExplorePage() {
                 setSearchParams({ page: 1 });
                 clearSearch();
               }}
-              className="text-sm text-gray-400 hover:text-gray-600 pb-2"
+              className="text-sm text-gray-500 hover:text-gray-300 pb-2"
             >
               ✕ Limpiar filtros
             </button>
@@ -284,7 +283,7 @@ function ExplorePage() {
           <p className="text-red-500 mb-4">Error: {error}</p>
           <button
             onClick={() => goToPage(page)}
-            className="bg-red-600 text-white px-4 py-2 rounded-full text-sm"
+            className="bg-[#4c1d95] text-white px-4 py-2 rounded-full text-sm"
           >
             Reintentar
           </button>

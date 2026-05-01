@@ -57,8 +57,8 @@ function FavoriteButton({ pokemon, compact = false }) {
           className={`p-1.5 rounded-full transition-colors
             ${
               saved
-                ? "text-red-500 bg-red-50 hover:bg-red-100"
-                : "text-gray-300 bg-white hover:text-red-400 hover:bg-red-50"
+                ? "text-purple-400 bg-purple-900/30 hover:bg-purple-900/50"
+                : "text-gray-500 hover:text-purple-400 hover:bg-purple-900/30"
             }`}
         >
           {HeartIcon}
@@ -85,8 +85,8 @@ function FavoriteButton({ pokemon, compact = false }) {
         className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors
           ${
             saved
-              ? "bg-red-100 text-red-600 hover:bg-red-200"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              ? "bg-purple-900/30 text-purple-400 hover:bg-purple-900/50 border border-purple-500/30"
+              : "bg-[#1e1e24] text-gray-400 hover:text-gray-200 border border-gray-700 hover:border-gray-500"
           }`}
       >
         {HeartIcon}

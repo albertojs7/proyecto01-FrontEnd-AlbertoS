@@ -83,7 +83,6 @@ export function ToastProvider({ children }) {
     <ToastContext.Provider value={{ showToast }}>
       {children}
 
-      {/* Contenedor de toasts — esquina inferior derecha */}
       <div
         aria-live="polite"
         aria-atomic="false"

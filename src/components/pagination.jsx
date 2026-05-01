@@ -26,8 +26,8 @@ export default function Pagination({ page, totalPages, goToPage }) {
           className={`w-9 h-9 rounded-full text-sm font-medium transition-colors
             ${
               n === page
-                ? "bg-red-600 text-white"
-                : "text-blue-600 hover:bg-gray-100"
+                ? "bg-[#4c1d95] text-white"
+                : "text-purple-400 hover:bg-purple-900/30"
             }`}
         >
           {n}

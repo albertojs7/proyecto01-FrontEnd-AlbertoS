@@ -1,6 +1,5 @@
 import { useRef, forwardRef, useImperativeHandle } from "react";
 
-// forwardRef permite que el padre llame a modal.current.open()
 const ConfirmModal = forwardRef(function ConfirmModal(
   { onConfirm, onCancel, pokemonName },
   ref,
@@ -37,38 +36,29 @@ const ConfirmModal = forwardRef(function ConfirmModal(
       onClick={handleBackdrop}
       aria-labelledby="modal-title"
       aria-describedby="modal-desc"
-      className="m-auto rounded-2xl shadow-xl p-0 w-full max-w-sm backdrop:bg-black/40 bg-white"
+      className="m-auto rounded-2xl shadow-xl p-0 w-full max-w-sm backdrop:bg-black/60 bg-[#1e1e24] border border-[#2d2d35]"
     >
       <div className="p-6 flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <h2 id="modal-title" className="text-lg font-bold text-gray-800">
+          <h2 id="modal-title" className="text-lg font-bold text-gray-200">
             ¿Quitar de favoritos?
           </h2>
-          <p id="modal-desc" className="text-sm text-gray-500">
+          <p id="modal-desc" className="text-sm text-gray-400">
             Vas a quitar a{" "}
-            <span className="font-semibold capitalize">{pokemonName}</span> de
+            <span className="font-semibold capitalize text-gray-300">{pokemonName}</span> de
             tu lista. Puedes volver a agregarlo cuando quieras.
           </p>
         </div>
-
-        {/*
-          DARK PATTERN: "confirmación negativa"
-          El botón de acción destructiva (Quitar) está estilizado de forma prominente
-          en rojo y ubicado a la derecha (posición de confirmación esperada por el usuario),
-          mientras que Cancelar aparece apagado a la izquierda.
-          Esto induce al usuario a confirmar la acción sin leer con cuidado,
-          cuando lo correcto sería que Cancelar fuera el botón prominente.
-        */}
         <div className="flex gap-3 justify-end">
           <button
             onClick={handleCancel}
-            className="px-4 py-2 rounded-full text-sm text-gray-400 hover:text-gray-600 transition-colors"
+            className="px-4 py-2 rounded-full text-sm text-gray-500 hover:text-gray-300 transition-colors"
           >
             Cancelar
           </button>
           <button
             onClick={handleConfirm}
-            className="px-4 py-2 rounded-full text-sm font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors"
+            className="px-4 py-2 rounded-full text-sm font-semibold bg-[#4c1d95] text-white hover:bg-[#5b21b6] transition-colors"
           >
             Quitar
           </button>

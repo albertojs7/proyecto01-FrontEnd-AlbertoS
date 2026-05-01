@@ -1,9 +1,8 @@
 export default function Loading() {
   return (
     <div className="flex flex-col items-center justify-center py-20 gap-3">
-      {/* Spinner animado usando SVG de Tailwind */}
       <svg
-        className="animate-spin h-8 w-8 text-red-500"
+        className="animate-spin h-8 w-8 text-[#4c1d95]"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

@@ -21,7 +21,7 @@ function FavoritesPage() {
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
         </svg>
         <p className="text-gray-400 text-lg">No tienes favoritos guardados.</p>
-        <Link to="/explorar" className="text-sm text-red-500 hover:underline">
+        <Link to="/explorar" className="text-sm text-purple-400 hover:underline">
           Explorar pokémon
         </Link>
       </main>

@@ -12,11 +12,11 @@ function Card({ id, name }) {
     <div className="relative">
       <Link
         to={`/pokemon/${id}`}
-        className="bg-white rounded-2xl shadow hover:shadow-lg transition-shadow p-4 flex flex-col items-center gap-2 group"
+        className="bg-[#1e1e24] border border-gray-800 rounded-2xl shadow hover:shadow-purple-500/20 transition-all p-4 flex flex-col items-center gap-2 group"
         aria-label={`Ver detalles de ${name}`}
       >
-        <span className="text-xs text-gray-400 self-start">
-          #{String(id).padStart(3, "0")}
+        <span className="text-xs text-gray-500 self-start">
+          #{String(id).padStart(3, '0')}
         </span>
 
         <img
@@ -27,7 +27,7 @@ function Card({ id, name }) {
           className="group-hover:scale-110 transition-transform"
         />
 
-        <p className="font-semibold capitalize text-gray-800">{name}</p>
+        <p className="font-semibold capitalize text-gray-200">{name}</p>
 
         <div className="flex gap-1 flex-wrap justify-center min-h-[24px]">
           {loading ? (

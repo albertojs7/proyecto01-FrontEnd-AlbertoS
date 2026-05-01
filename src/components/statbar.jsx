@@ -27,7 +27,7 @@ function StatBar({ name, value }) {
       </span>
       <span className="text-sm font-semibold w-8 shrink-0">{value}</span>
       <div
-        className="flex-1 bg-gray-100 rounded-full h-2"
+        className="flex-1 bg-gray-600 rounded-full h-2"
         role="progressbar"
         aria-valuenow={value}
         aria-valuemin={0}

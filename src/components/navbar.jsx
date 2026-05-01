@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function PikachuIcon() {
+function MasterBallIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,26 +11,28 @@ function PikachuIcon() {
       aria-hidden="true"
       focusable="false"
     >
-      {/* Orejas */}
-      <polygon points="25,42 18,8 38,36" fill="#f5c800"/>
-      <polygon points="75,42 82,8 62,36" fill="#f5c800"/>
-      <polygon points="18,8 26,22 33,12" fill="#1a1a1a"/>
-      <polygon points="82,8 74,22 67,12" fill="#1a1a1a"/>
-      {/* Cara */}
-      <circle cx="50" cy="58" r="38" fill="#f5c800"/>
-      {/* Ojos */}
-      <circle cx="35" cy="48" r="7" fill="#1a1208"/>
-      <circle cx="65" cy="48" r="7" fill="#1a1208"/>
-      <circle cx="32" cy="45" r="2.5" fill="white"/>
-      <circle cx="62" cy="45" r="2.5" fill="white"/>
-      {/* Nariz */}
-      <ellipse cx="50" cy="58" rx="3" ry="2" fill="#3a1a08"/>
-      {/* Boca */}
-      <path d="M43 63 Q50 70 57 63" stroke="#3a1a08" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-      <path d="M43 63 Q41 60 43 57" stroke="#3a1a08" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-      {/* Cachetes */}
-      <circle cx="22" cy="65" r="11" fill="#e8302a" opacity="0.85"/>
-      <circle cx="78" cy="65" r="11" fill="#e8302a" opacity="0.85"/>
+      {/* Contorno exterior */}
+      <circle cx="50" cy="50" r="45" fill="#1a1a1a" />
+      {/* Mitad superior (Morado) */}
+      <path d="M 5 50 A 45 45 0 0 1 95 50 Z" fill="#6B21A8" />
+      {/* Mitad inferior (Blanco) */}
+      <path d="M 5 50 A 45 45 0 0 0 95 50 Z" fill="#e5e7eb" />
+      {/* Banda negra central */}
+      <rect x="5" y="46" width="90" height="8" fill="#1a1a1a" />
+      {/* Botón central (Exterior negro) */}
+      <circle cx="50" cy="50" r="14" fill="#1a1a1a" />
+      {/* Botón central (Fondo blanco) */}
+      <circle cx="50" cy="50" r="10" fill="#e5e7eb" />
+      {/* Botón central (Interior) */}
+      <circle cx="50" cy="50" r="5" fill="#1a1a1a" />
+      {/* "M" de la Master Ball */}
+      <path
+        d="M 35 25 L 35 40 L 40 40 L 40 30 L 50 40 L 60 30 L 60 40 L 65 40 L 65 25 L 56 25 L 50 32 L 44 25 Z"
+        fill="#ffffff"
+      />
+      {/* Círculos rosados */}
+      <circle cx="25" cy="30" r="8" fill="#F472B6" />
+      <circle cx="75" cy="30" r="8" fill="#F472B6" />
     </svg>
   );
 }
@@ -46,9 +48,9 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-red-600 shadow-md relative z-50">
+    <header className="bg-[#140b2e] shadow-md relative z-50">
       <nav
-        className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between"
+        className="max-w-5xl mx-auto px-4 py-6 flex items-center justify-between"
         aria-label="Navegación principal"
       >
         <NavLink
@@ -57,8 +59,8 @@ function Navbar() {
           aria-label="Pokédex — ir al inicio"
           onClick={() => setIsMenuOpen(false)}
         >
-          <PikachuIcon />
-          <span>Pokédex</span>
+          <MasterBallIcon />
+          <span className="text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">Pokédex</span>
         </NavLink>
 
         {/* Botón menú móvil */}
@@ -100,11 +102,7 @@ function Navbar() {
                 to={to}
                 end={to === "/"}
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors ${
-                    isActive
-                      ? "text-white underline underline-offset-4"
-                      : "text-red-100 hover:text-white"
-                  }`
+                  "text-sm font-medium transition-colors text-purple-200 hover:text-white"
                 }
               >
                 {label}
@@ -116,7 +114,7 @@ function Navbar() {
 
       {/* Menú Móvil */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-red-600 shadow-lg">
+        <div className="md:hidden absolute top-full left-0 w-full bg-[#140b2e] shadow-lg">
           <ul className="flex flex-col list-none m-0 p-4 gap-4" role="list">
             {links.map(({ to, label }) => (
               <li key={to}>

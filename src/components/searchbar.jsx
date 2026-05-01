@@ -17,11 +17,11 @@ export default function SearchBar({
         value={globalInput}
         onChange={(e) => setGlobalInput(e.target.value)}
         aria-label="Búsqueda global de pokémon"
-        className="w-full max-w-md border border-gray-300 rounded-full px-5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-400"
+        className="w-full max-w-md border border-[#4c1d95] bg-[#1e1e24] text-gray-200 rounded-full px-5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 placeholder:text-gray-500"
       />
       <button
         type="submit"
-        className="bg-red-600 hover:bg-red-700 text-white text-sm px-5 py-2 rounded-full transition-colors"
+        className="bg-[#4c1d95] hover:bg-[#5b21b6] text-white text-sm px-5 py-2 rounded-full transition-colors"
       >
         Buscar
       </button>
@@ -29,7 +29,7 @@ export default function SearchBar({
         <button
           type="button"
           onClick={clearSearch}
-          className="text-sm text-gray-400 hover:text-gray-600 px-2"
+          className="text-sm text-gray-500 hover:text-gray-300 px-2"
           aria-label="Limpiar búsqueda"
         >
           ✕ Limpiar
